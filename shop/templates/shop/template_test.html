@@ -1,0 +1,55 @@
+{% extends "shop/layout.html" %}
+
+{% block content %}
+
+{{article |linebreaks}}
+{{article.title |linebreaks}}
+{{first_name |linebreaks}}
+{{people |linebreaks}}
+{{people.0 |linebreaks}}
+{{person |linebreaks}}
+{{person.say_hello |linebreaks}}
+
+{% for st in student_list %}
+    {{st}}
+{% empty %}
+    <h1>학생정보가 없습니다.</h1>
+{% endfor %}   
+<hr>
+
+{% if student_list %}
+    {% for st in student_list %}
+        {{st}}
+    {% endfor %}
+
+{% else %}
+    <h1>학생정보가 없습니다.</h1>
+{% endif %}
+
+<hr>
+{% lorem 3 %}<br>
+{% lorem 3 p %}<br>
+{% lorem 2 w random %}<br>
+{{datetime_obj}}
+<br>
+{% comment %} 시간 포맷 {% endcomment %}
+{% comment %} jS 일 F 월 Y 년 H:i 시간 {% endcomment %}
+{% now "jS F Y H:i" %}
+
+<hr>
+{{ dt|date:'D d M Y'}} <br>
+{{ dt|date:"DATE_FORMAT"}} <br>
+{{ dt|date:"D d M Y" }} <br>
+{{ dt|date:"DATE_FORMAT" }} <br>
+{{ dt|date:"DATETIME_FORMAT" }}<br>
+{{ dt|date:"SHORT_DATE_FORMAT" }} <br>
+{{ dt|date:"SHORT_DATETIME_FORMAT" }} <br>
+{{ dt|time:"TIME_FORMAT" }} <br>
+<hr>
+{{ past_dt|timesince}}<br>
+{{ past_dt|timesince:dt }} <br>
+{{ future_dt|timeuntil }} <br>
+{{ future_dt|timeuntil:past_dt}} <br>
+
+
+{% endblock content %}

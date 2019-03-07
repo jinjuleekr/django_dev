@@ -1,0 +1,36 @@
+{% extends "shop/layout.html" %}
+
+{% block title %}
+Article 목록 보기
+{% endblock title %}
+
+{% block content %}
+<h1>Article 목록 보기</h1>
+<form action="" method="get">
+    입력 : <input type="text" name='q' value="{{q2}}"><br>
+    <input type="submit" value="검색">
+</form>
+
+<button onclick="location.href='insert/'">입력</button>
+<button onclick="location.href='update/'">수정</button>
+<button onclick="location.href='delete/'">삭제</button>
+<button onclick="location.href='test1/'">reverse연습1</button> 
+<button onclick='location.href="{% url 'shop:reversetest1' %}"'>reverse연습2</button> 
+<a href='{% url 'shop:reversetest1' %}'>reverse연습3</a>
+
+<hr>
+
+<ul>
+{% for article in article_list %}
+
+ <li>
+    {{forloop.counter0}}
+    {% comment %} {{article.id}} 변수가 아닌 컬럼 값  {% endcomment %}
+    <a href="{{article.id}}/detail">{{article.title}}</a>
+    {% comment %} urls.py에서 지정해준 name {% endcomment %}
+    <a href="{% url 'shop:detail' article.id %}">{{article.title}}</a>
+    <a href="{{article.get_absolute_url2}}">{{article.title}}</a>
+ </li>
+{% endfor %}
+</ul>
+{% endblock content %}

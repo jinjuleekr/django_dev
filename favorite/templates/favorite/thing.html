@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Favorite thing List</h1>
+
+<ul>
+{% for thing in favorite_list %}
+    <li><a href="things/{{thing.id}}">{{thing.title}}</a></li>
+{% endfor %}
+</ul>
+
+<ul>
+{% for thing in thing_list %}
+    <li><a href="{% url 'favorite:favoriteDetail' thing.id %}">{{thing.title}}</a></li>
+{% endfor %}
+</ul>
+
+<ul>
+{% for food in food_list %}
+    <li><a href="{% url 'favorite:foodDetail' food.id %}">{{food.food}}</a></li>
+{% endfor %}
+</ul>
+
+<ul>
+{% for movie in movie_list %}
+    <li><a href="{% url 'favorite:movieDetail' movie.id %}">{{movie.movie}}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock content %}

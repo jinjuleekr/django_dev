@@ -1,0 +1,19 @@
+{% extends "shop/layout.html" %}
+
+{% block content %}
+
+{% comment %} action="" 는 값을 받고, 원래의 경로로 돌아가는 것 {% endcomment %}
+<form action="" method="POST">
+    {% comment %} post방식을 서버로 넘길 때, 보안 {% endcomment %}
+    {% csrf_token %}
+    <input type="text" name="title">
+    <input type="text" name="body">
+    <input type="radio" name="status" value='d'>draft
+    <input type="radio" name="status" value='p'>published
+    <input type="radio" name="status" value='w'>Withdraw
+    <textarea name="message" id="" cols="20" rows="10"></textarea>
+
+    <input type="submit" value="확인">
+</form>
+
+{% endblock content %}

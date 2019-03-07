@@ -1,0 +1,18 @@
+<h1>post list 정보입니다.</h1>
+
+<ul>
+{% for post in post_list %}
+    <li><a href="/blog/{{post.id}}/">{{post.title}}</a></li>
+{% endfor %}
+</ul>
+
+<hr>
+
+{% comment %} 장고가 선호하는 방법 {% endcomment %}
+<ul>
+{% for post in post_list %}
+    {% comment %} blog라는 폴더 안에 detail이라는 path를 찾아라 {% endcomment %}
+    <li><a href="{% url 'blog:detail' post.id %}">{{post.title}}</a></li>
+{% endfor %}
+</ul>
+

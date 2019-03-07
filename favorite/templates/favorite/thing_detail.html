@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>상세보기</h1>
+
+<a href="{{thing.url}}">{{thing.title}}</a><br>
+<h3>{{food.food}}</h3><br>
+{{food.reason}}<br>
+<h3>{{movie.movie}}</h3><br>
+{{movie.genre}}
+{% endblock content %}

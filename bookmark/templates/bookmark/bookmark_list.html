@@ -1,0 +1,13 @@
+<h1>Bookmark 목록</h1>
+
+<ul>
+{% for bm in object_list %}
+    <li><a href="{{bm.url}}">{{bm}}</a></li>
+{% endfor %}
+</ul>
+
+<ul>
+{% for bm in object_list %}
+    <li><a href="{% url 'bookmark:detail2' bm.id %}">{{bm}}</a></li>
+{% endfor %}
+</ul>
