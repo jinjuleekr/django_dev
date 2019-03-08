@@ -5,9 +5,9 @@ Article 목록 보기
 {% endblock title %}
 
 {% block content %}
-<h1>Article 목록 보기</h1>
+<h1>Article 목록 보기 --- {{mymessage}} --- {{today}} </h1>
 <form action="" method="get">
-    입력 : <input type="text" name='q' value="{{q2}}"><br>
+    입력 : <input type="text" name='page' value="{{q2}}"><br>
     <input type="submit" value="검색">
 </form>
 

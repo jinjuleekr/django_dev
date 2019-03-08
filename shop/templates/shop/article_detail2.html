@@ -1,0 +1,16 @@
+{% extends "shop/layout.html" %}
+
+{% block title %}
+상세 보기
+{% endblock title %}
+
+{% block content %}
+<h1>상세 보기2222</h1>
+
+{{article | linebreaks}} <br>
+{{article.id | linebreaks}}<br>
+{{article.title | linebreaks}}<br>
+{{article.body | linebreaks}}<br>
+{{article.status | linebreaks}}<br>
+{% comment %}  | linebreaks 는 서버에서 글을 입력했을 때 입력된 입력값에 줄바꿈을 줄바꿈으로 표시 {% endcomment %}
+{% endblock content %}

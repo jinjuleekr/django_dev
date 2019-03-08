@@ -1,11 +1,18 @@
 from django.urls import path
 from . import views
-
+from django.views.generic.base import RedirectView
 app_name = 'shop'
 
 urlpatterns = [
     path('', views.article_list, name="list"),
-    path('<id2>/detail/', views.article_detail, name="detail"),
+    path('<pk>/detail/', views.article_detail, name="detail"),
+    # path('<pk>/detail/', views.ArticleDV.as_view(), name="detail"),
+    path('myview/', views.MyView.as_view()),
+    path('thanks/', views.success),
+    path('contact/', views.ContactView.as_view()),
+    path('home/', views.HomePageView.as_view()),
+    path('go/', RedirectView.as_view(url="http://djangoproject.com/")),
+    path('go2/', RedirectView.as_view(url="/shop/home")), #절대 경로
     path('reversetest/', views.article_reversetest, name="reversetest2"),
     path('temptest/', views.template_test, name='ttest'),
     path('insert/', views.article_insert, name="insert"),
