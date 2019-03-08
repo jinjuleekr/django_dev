@@ -32,3 +32,7 @@ class Article(models.Model):
     def get_absolute_url2(self):
         print(self)
         return reverse('shop:detail', args=[self.id])
+
+    # success_url이 없으면 자동 호출 됨
+    def get_absolute_url(self):
+        return reverse('shop:detail', kwargs={"pk":self.id})

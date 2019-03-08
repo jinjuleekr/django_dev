@@ -1,0 +1,10 @@
+<h1>Book 세부 보기</h1>
+
+<h2>책 이름 : {{object.title}}</h2>
+저자 : {{object.author}}<br>
+출판사 : {{object.publisher}}<br>
+출판일 : {{object.publication_date}}<br>
+
+<hr>
+<button onclick="location.href='/book/update/{{object.id}}/'">수정</button>
+<button onclick="location.href='/book/delete/{{object.id}}/'">삭제</button>

@@ -30,6 +30,8 @@ Article 목록 보기
     {% comment %} urls.py에서 지정해준 name {% endcomment %}
     <a href="{% url 'shop:detail' article.id %}">{{article.title}}</a>
     <a href="{{article.get_absolute_url2}}">{{article.title}}</a>
+    <button onclick="location.href='{% url 'shop:edit' article.id %}'">수정</button>
+    <button onclick="location.href='{% url 'shop:del' article.id %}'">삭제</button> 
  </li>
 {% endfor %}
 </ul>

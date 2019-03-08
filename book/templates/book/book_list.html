@@ -1,0 +1,14 @@
+<h1>Book 목록 보기</h1>
+
+<hr>
+<form method="GET">
+입력 : <input type="text" name="page" value={{keyword}}>
+<input type="submit" value="검색">
+</form>
+<hr>
+
+{% for book in object_list %}
+    <ul>{{book.id}}.<a href="detail/{{book.id}}/">{{book}}</a></ul>
+{% endfor %}
+
+<button onclick="location.href='insert/'">신간 등록</button>

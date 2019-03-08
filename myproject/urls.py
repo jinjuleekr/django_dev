@@ -32,6 +32,7 @@ urlpatterns = [
     path('bookmark/', include('bookmark.urls')),
     path('favorite/', include('favorite.urls')),
     path('shop/', include('shop.urls')),
+    path('book/', include('book.urls')),
 ]
 
 if settings.DEBUG:

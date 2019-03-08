@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'favorite',
     'modeltest',
     'shop',
+    'book',
 ]
 
 MIDDLEWARE = [

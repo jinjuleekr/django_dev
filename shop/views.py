@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.utils import timezone
 from django.views.generic import DetailView
 from django.views import View
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 class Person():
     def __init__(self, name):
@@ -106,6 +107,10 @@ class ContactView(FormView):
 def success(request):
     return render(request, "shop/success.html")
 
+
+article_new = CreateView.as_view(model=Article, fields='__all__')
+article_edit = UpdateView.as_view(model=Article, fields='__all__') #model의 get_absolute_url
+article_del = DeleteView.as_view(model=Article, success_url='/shop/')
 
 #방법 1 : 값 고정
 # def article_detail(request, id2):
