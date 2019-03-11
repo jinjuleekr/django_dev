@@ -131,7 +131,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+#static파일의 URL prefix
 STATIC_URL = '/static/'
+            
+# 개발 환경
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'myproject', 'static'),
+                    os.path.join(BASE_DIR, 'book', 'static')]
+
+# 배포시 ... >> python manage.py collectstatic
+STATIC_ROOT = os.path.join(BASE_DIR, '..', 'staticfiles')
+
+#media파일에 대한 URL prefix
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'auth.User'
 

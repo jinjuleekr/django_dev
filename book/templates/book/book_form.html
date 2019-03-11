@@ -1,0 +1,25 @@
+{% load static %}
+
+<link rel='stylesheet' href="/static/css/test.css">
+<link rel="stylesheet" href="{% static 'css/test2.css' %}">
+
+<h1>Book 신간 등록/수정</h1>
+{% comment %} <form method="post">
+    {% csrf_token %}
+    제목 : <input type="text" name="title" /><br>
+    저자 : <input type="text" name="author" /><br>
+    출판사 : <input type="text" name="publisher" /><br>
+    <input type="submit" value="등록" />
+</form> {% endcomment %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="등록" />
+</form>
+
+<hr>
+
+<img src="/static/img/mario.png" />
+
+<img src="{% static 'img/img8.jpg' %}" />

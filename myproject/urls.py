@@ -35,8 +35,12 @@ urlpatterns = [
     path('book/', include('book.urls')),
 ]
 
+#debug상태일 때만, URL이 추가된다.
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns += [
         path('__debug__/', include(debug_toolbar.urls))
     ]
+
+from django.conf.urls.static import static
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #수정해야함
