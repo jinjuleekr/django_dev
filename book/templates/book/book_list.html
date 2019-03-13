@@ -1,99 +1,120 @@
-<h1>Book 목록 보기</h1>
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Book 목록</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+  <body>
+      
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      
+      <h1>Book 목록 보기</h1>
+                          <style>
+                             body { padding: 10px; text-align: center;}
+                             table { margin : 0 auto;}
+                             table th, td{ padding : 5px; text-align: center;}
+                          </style>
+                          
+                          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+                          </script>
+                          
+                          <script>
+                          $(function(){
+                              $('#btn1').click(function(){
+                                  //alert("ajax코드");
+                                  $.ajax({
+                                      url:'/book/searchData/',
+                                      dataType:'json',
+                                      type:'POST',
+                                      data:{'mydata':$('#msg').val()},
+                                      success:function(result){
+                                          alert("ajax코드");
+                                          {% comment %} result =JSON.parse(result); {% endcomment %}
+                                          $('#here').text(result);
+                                      }
+                          
+                                  });
+                              });
+                          });
+                          </script>
+                          <hr>
+                          <form method="GET">
+                          입력 : <input type="text" name="page" value={{keyword}}>
+                          <input type="submit" value="검색">
+                          </form>
+                          <hr>
+                          <table border="2">
+                          <tr>
+                          <td>번호</td><td>제목</td><td>작가</td><td>출판사</td><td>ip</td>
+                          </tr>
+                          {% for book in book_list %}
+                          <tr>
+                              <td>{{book.id}}</td>
+                              <td><a href="detail/{{book.id}}/">{{book.title}}</a></td>
+                              <td>{{book.author}}</td>
+                              <td>{{book.publisher}}</td>
+                              <td>{{book.ip}}</td>
+                          </tr>
+                          {% endfor %}
+                          
+                          <button class='btn btn-default' onclick="location.href='{% url "book:insert" %}'">신간 등록</button>
+                          
+                          <hr>
+                          
+                          <input type="text" id="msg">
+                          <button  id='btn1'>Ajax실행하기</button>
+                          <div id="here">여기에 출력합니다.</div>
+                          
+                          <div class="container">
+                                      <!-- Pagination -->
+                                      {% if is_paginated %}
+                                      <nav>
+                                          <ul class="pagination justify-content-center" style="margin:20px 0">
+                                          {% if page_obj.has_previous %}
+                                              <li class="page-item">
+                                              <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                                  <span>Prev</span>
+                                              </a>
+                                              </li>
+                                          {% else %}
+                                              <li class="disabled page-item">
+                                              <a class="page-link" href="#">
+                                                  <span>Prev</span>
+                                              </a>
+                                              </li>
+                                          {% endif %}
+                                          
+                                          {% for page in page_range %}
+                                              <li {% if page == page_obj.number %} class="active page-item" {% endif %}>
+                                              <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                                              </li>
+                                          {% endfor %}
+                                          {% if page_obj.has_next %}
+                                              <li class="page-item">
+                                              <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                                  <span>Next</span>
+                                              </a>
+                                              </li>
+                                          {% else %}
+                                              <li {% if not page_obj.has_next %}class="disabled page-item"{% endif %}>
+                                              <a class="page-link" href="#">
+                                                  <span>Next</span>
+                                              </a>
+                                              </li>
+                                          {% endif %}
+                                          </ul>
+                                      </nav>
+                                      {% endif %}
+                              </div>
+  </body>
+</html>
 
-<style>
-   body { padding: 10px; text-align: center;}
-   table { margin : 0 auto;}
-   table th, td{ padding : 5px; text-align: center;}
-</style>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-</script>
-
-<script>
-$(function(){
-    $('#btn1').click(function(){
-        //alert("ajax코드");
-        $.ajax({
-            url:'/book/searchData/',
-            dataType:'json',
-            type:'POST',
-            data:{'mydata':$('#msg').val()},
-            success:function(result){
-                alert("ajax코드");
-                {% comment %} result =JSON.parse(result); {% endcomment %}
-                $('#here').text(result);
-            }
-
-        });
-    });
-});
-</script>
-<hr>
-<form method="GET">
-입력 : <input type="text" name="page" value={{keyword}}>
-<input type="submit" value="검색">
-</form>
-<hr>
-<table border="1">
-<tr>
-<td>번호</td><td>제목</td><td>작가</td><td>출판사</td><td>ip</td>
-</tr>
-{% for book in book_list %}
-<tr>
-    <td>{{book.id}}</td>
-    <td><a href="detail/{{book.id}}/">{{book.title}}</a></td>
-    <td>{{book.author}}</td>
-    <td>{{book.publisher}}</td>
-    <td>{{book.ip}}</td>
-</tr>
-{% endfor %}
-
-<button class='btn btn-default' onclick="location.href='{% url "book:insert" %}'">신간 등록</button>
-
-<hr>
-
-<input type="text" id="msg">
-<button  id='btn1'>Ajax실행하기</button>
-<div id="here">여기에 출력합니다.</div>
-
-<div class="container">
-            <!-- Pagination -->
-            {% if is_paginated %}
-            <nav>
-                <ul class="pagination justify-content-center" style="margin:20px 0">
-                {% if page_obj.has_previous %}
-                    <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
-                        <span>Prev</span>
-                    </a>
-                    </li>
-                {% else %}
-                    <li class="disabled page-item">
-                    <a class="page-link" href="#">
-                        <span>Prev</span>
-                    </a>
-                    </li>
-                {% endif %}
-                
-                {% for page in page_range %}
-                    <li {% if page == page_obj.number %} class="active page-item" {% endif %}>
-                    <a class="page-link" href="?page={{ page }}">{{ page }}</a>
-                    </li>
-                {% endfor %}
-                {% if page_obj.has_next %}
-                    <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">
-                        <span>Next</span>
-                    </a>
-                    </li>
-                {% else %}
-                    <li {% if not page_obj.has_next %}class="disabled page-item"{% endif %}>
-                    <a class="page-link" href="#">
-                        <span>Next</span>
-                    </a>
-                    </li>
-                {% endif %}
-                </ul>
-            </nav>
-            {% endif %}
-    </div>

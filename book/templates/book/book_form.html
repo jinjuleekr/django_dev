@@ -14,7 +14,9 @@
 
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{form.as_p}}
+    <table>
+    {{form.as_table}}
+    </table>
     <input type="submit" value="등록" />
 </form>
 
@@ -23,3 +25,4 @@
 <img src="/static/img/mario.png" />
 
 <img src="{% static 'img/img8.jpg' %}" />
+

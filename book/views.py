@@ -45,9 +45,9 @@ def book_update(request, pk):
             book.ip = '.'.join(request.META['REMOTE_ADDR'].split('.')[:-1]) + ".88"
             book.save()
             return redirect('/book/')
-        else:
-            form = BookModelForm(instance=book)
-        return render(request, 'book/book_form.html', {'form':form})
+    else:
+        form = BookModelForm(instance=book)
+    return render(request, 'book/book_form.html', {'form':form})
 
 
 def book_insert(request):

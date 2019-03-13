@@ -13,10 +13,16 @@ class Book(models.Model):
     publisher = models.CharField(max_length=50, validators=[min_length10_validator])
     publication_date = models.DateField(auto_now_add=True)
     ip = models.CharField(max_length=15)
-    photo = models.ImageField(blank=True)
-    photo2 = models.ImageField(blank=True, upload_to="book")
-    photo3 = models.ImageField(blank=True, upload_to='book/%Y/%m/%d')
 
+    photo = models.ImageField(blank=True, upload_to="book/img")
+    # 저장경로 : MEDIA_ROOT/book/img/xxxx.jpg 경로에 저장
+	# DB필드 : 'MEDIA_URL/book/img/xxxx.jpg' 문자열 저장
+    photo2 = models.ImageField(blank=True, upload_to="book")
+    # 저장경로 : MEDIA_ROOT/book/xxxx.jpg 경로에 저장
+	# DB필드 : 'MEDIA_URL/book/xxxx.jpg' 문자열 저장
+    photo3 = models.ImageField(blank=True, upload_to='book/%Y/%m/%d')
+    # 저장경로 : MEDIA_ROOT/book/img/2019/03/12/xxxx.jpg 경로에 저장
+	# DB필드 : 'MEDIA_URL/book/img/2019/03/12/xxxx.jpg' 문자열 저장
     def __str__(self):
         return self.title
 

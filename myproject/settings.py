@@ -142,7 +142,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'myproject', 'static'),
 STATIC_ROOT = os.path.join(BASE_DIR, '..', 'staticfiles')
 
 #media파일에 대한 URL prefix
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'auth.User'
